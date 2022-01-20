@@ -44,12 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IWriteToDBStrategy.cs" />
-    <Compile Include="TextWrite.cs" />
+    <Compile Include="WriteText.cs" />
     <Compile Include="LoggedUesr.cs" />
     <Compile Include="Quiz.cs" />
     <Compile Include="QuizQuastion.cs" />
     <Compile Include="TimeUseApp.cs" />
-    <Compile Include="XMLWrite.cs" />
+    <Compile Include="WriteXML.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Facebook">

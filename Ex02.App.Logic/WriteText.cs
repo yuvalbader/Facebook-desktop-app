@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Ex02.App.Logic
 {
-    public class TextWrite: IWriteToDBStrategy
+    public class WriteText : IWriteToDBStrategy
     {
         
         void IWriteToDBStrategy.WriteStatisticToDataBase(string i_ToWrite)
