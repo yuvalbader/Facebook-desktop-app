@@ -29,7 +29,7 @@ namespace Ex02.App.InterFace
         public FormMain(LoggedUesr i_LoggedInUser)
         {
   
-            r_TimeUse = new TimeUseApp(new LocalDataBase());
+            r_TimeUse = new TimeUseApp(new XMLWrite());
             m_LoggedInUser = i_LoggedInUser;
             InitializeComponent();
             this.Text = string.Format("Logged in as {0}", m_LoggedInUser.Name);

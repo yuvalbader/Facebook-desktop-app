@@ -4,18 +4,18 @@ using System.IO;
 
 namespace Ex02.App.Logic
 {
-    public class TimeUseApp 
+    public class TimeUseApp
     {
         private DateTime m_StartTimeAppUse;
 
         private DateTime m_EndTimeAppUse;
 
-        public IDataBaseStrategy m_DataBase { get; set; }
+        public IWriteToDBStrategy m_WriteStategy { get; set; }
 
-        public TimeUseApp(IDataBaseStrategy i_DataBase)
+        public TimeUseApp(IWriteToDBStrategy i_Stategy)
         {
             m_StartTimeAppUse = DateTime.Now;
-            m_DataBase = i_DataBase;
+            m_WriteStategy = i_Stategy;
 
         }
 
@@ -52,22 +52,32 @@ namespace Ex02.App.Logic
             m_EndTimeAppUse = DateTime.Now;
             string data;
             string timeUseText;
-    
+
             data = DateTime.Now.DayOfWeek.ToString() + ' ' + DateTime.UtcNow.Date.ToString("dd/MM/yyyy");
             timeUseText = string.Format("{0},{1},{2},{3},{4}", data, Days, Hours, Minutes, Seconds);
 
             return timeUseText;
         }
 
-
         public void WriteStatisticToDataBase()
         {
-            m_DataBase.WriteStatisticToDataBase(CalcTimeUse());
+            m_WriteStategy.WriteStatisticToDataBase(CalcTimeUse());
         }
-
         public object GetStatisticFromDataBase()
         {
-            return m_DataBase.GetStatisticFromDataBase();
+            string filePath = System.IO.Directory.GetCurrentDirectory();
+            List<string> data = new List<string>();
+            string line;
+
+            System.IO.StreamReader file = new System.IO.StreamReader("WellBeignAppUse.txt");
+            while ((line = file.ReadLine()) != null)
+            {
+                data.Add(line);
+            }
+            file.Close();
+
+            return data;
+
         }
     }
 }

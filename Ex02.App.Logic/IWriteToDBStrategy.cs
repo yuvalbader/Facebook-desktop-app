@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Ex02.App.Logic
 {
-    public interface IDataBaseStrategy
+    public interface IWriteToDBStrategy
     {
          void WriteStatisticToDataBase(string i_ToWrite);
-         object GetStatisticFromDataBase();
+       
     }
 }
