@@ -43,22 +43,19 @@
     <None Include="Properties\DataSources\FacebookWrapper.ObjectModel.User.datasource" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ITimeUseApp.cs" />
+    <Compile Include="IDataBaseStrategy.cs" />
+    <Compile Include="LocalDataBase.cs" />
     <Compile Include="LoggedUesr.cs" />
     <Compile Include="Quiz.cs" />
     <Compile Include="QuizQuastion.cs" />
     <Compile Include="TimeUseApp.cs" />
-    <Compile Include="TimeUseProxy.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Facebook">
-      <HintPath>..\..\..\..\..\Desktop\A22 Ex01 NadavPorat 31119374 YuvalBader 207119967\Facebook.dll</HintPath>
+      <HintPath>..\Facebook.dll</HintPath>
     </Reference>
     <Reference Include="FbGraphApiWrapper">
-      <HintPath>..\..\..\..\..\Desktop\A22 Ex01 NadavPorat 31119374 YuvalBader 207119967\FbGraphApiWrapper.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\FbGraphApiWrapper.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Windows.Design.Extensibility, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Windows.Design.Interaction, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />

@@ -20,7 +20,7 @@ namespace Ex02.App.InterFace
     {
         internal LoggedUesr m_LoggedInUser;
 
-        private readonly ITimeUseApp r_TimeUse;
+        private readonly TimeUseApp r_TimeUse;
 
         private Observer Obs= new Observer();
 
@@ -28,7 +28,8 @@ namespace Ex02.App.InterFace
 
         public FormMain(LoggedUesr i_LoggedInUser)
         {
-            r_TimeUse = new TimeUseProxy();
+  
+            r_TimeUse = new TimeUseApp(new LocalDataBase());
             m_LoggedInUser = i_LoggedInUser;
             InitializeComponent();
             this.Text = string.Format("Logged in as {0}", m_LoggedInUser.Name);
@@ -148,7 +149,7 @@ namespace Ex02.App.InterFace
 
         private void buttonFetchStatistic_Click(object sender, EventArgs e)
         {
-            List<string> data = r_TimeUse.GetStatisticFromFile() as List<string>;
+            List<string> data = r_TimeUse.GetStatisticFromDataBase() as List<string>;
             int indexChart = 0;
             int indexListBox = 0;
 
@@ -208,7 +209,7 @@ namespace Ex02.App.InterFace
             try
             {
                 FormMain.ActiveForm.Close();
-                r_TimeUse.WriteStatisticToFile();
+                r_TimeUse.WriteStatisticToDataBase();
             }
             catch (Exception ex)
             {
@@ -221,7 +222,7 @@ namespace Ex02.App.InterFace
             try
             {
                 FormMain.ActiveForm.Close();
-                r_TimeUse.WriteStatisticToFile();
+                r_TimeUse.WriteStatisticToDataBase();
             }
             catch (Exception ex)
             {

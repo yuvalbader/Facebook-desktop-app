@@ -84,7 +84,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Ex02.App.Logic\Ex02.App.Logic.csproj">
+    <ProjectReference Include="..\Ex02.App.Logic\Ex03.App.Logic.csproj">
       <Project>{bc182b35-8bf6-45b2-8d34-b1aba7126842}</Project>
       <Name>Ex02.App.Logic</Name>
     </ProjectReference>
@@ -102,12 +102,11 @@
       <HintPath>..\packages\CefSharp.WinForms.97.1.12\lib\net462\CefSharp.WinForms.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\A22 Ex01 NadavPorat 31119374 YuvalBader 207119967\Facebook.dll</HintPath>
+    <Reference Include="Facebook">
+      <HintPath>..\Facebook.dll</HintPath>
     </Reference>
     <Reference Include="FbGraphApiWrapper">
-      <HintPath>..\..\..\..\..\Desktop\A22 Ex01 NadavPorat 31119374 YuvalBader 207119967\FbGraphApiWrapper.dll</HintPath>
+      <HintPath>..\FbGraphApiWrapper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />

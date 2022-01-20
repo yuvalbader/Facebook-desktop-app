@@ -4,15 +4,19 @@ using System.IO;
 
 namespace Ex02.App.Logic
 {
-    public class TimeUseApp : ITimeUseApp
+    public class TimeUseApp 
     {
         private DateTime m_StartTimeAppUse;
 
         private DateTime m_EndTimeAppUse;
 
-        public TimeUseApp(DateTime i_StartTimeAppUse)
+        public IDataBaseStrategy m_DataBase { get; set; }
+
+        public TimeUseApp(IDataBaseStrategy i_DataBase)
         {
             m_StartTimeAppUse = DateTime.Now;
+            m_DataBase = i_DataBase;
+
         }
 
         internal DateTime StartTime { get; set; }
@@ -43,49 +47,27 @@ namespace Ex02.App.Logic
 
             return totleUseToDay;
         }
-
-        public void WriteStatisticToFile()
+        private string CalcTimeUse()
         {
             m_EndTimeAppUse = DateTime.Now;
             string data;
-            string outText;
-            string DirectoryPath;
-            string filePath;
+            string timeUseText;
+    
+            data = DateTime.Now.DayOfWeek.ToString() + ' ' + DateTime.UtcNow.Date.ToString("dd/MM/yyyy");
+            timeUseText = string.Format("{0},{1},{2},{3},{4}", data, Days, Hours, Minutes, Seconds);
 
-                data = DateTime.Now.DayOfWeek.ToString() + ' ' + DateTime.UtcNow.Date.ToString("dd/MM/yyyy");
-                outText = string.Format("{0},{1},{2},{3},{4}", data, Days, Hours, Minutes, Seconds);
-
-                // Append new lines of text to the file
-                DirectoryPath = System.IO.Directory.GetCurrentDirectory();
-                filePath = Path.Combine(DirectoryPath, "WellBeignAppUse.txt");
-
-                if (!File.Exists(filePath))
-                {
-                    using (StreamWriter outputFile = new StreamWriter(filePath))
-                    outputFile.WriteLine(outText);
-                }
-                else
-                {
-                    using (StreamWriter outputFile = File.AppendText(filePath))
-                    {
-                        outputFile.WriteLine(outText);
-                    }
-                }
+            return timeUseText;
         }
 
-        public object GetStatisticFromFile()
-        {
-            string filePath = System.IO.Directory.GetCurrentDirectory();
-            List<string> data = new List<string>();
-            string line;
 
-            System.IO.StreamReader file = new System.IO.StreamReader("WellBeignAppUse.txt");
-            while ((line = file.ReadLine()) != null)
-            {
-              data.Add(line);
-            }
-            
-            return data;
+        public void WriteStatisticToDataBase()
+        {
+            m_DataBase.WriteStatisticToDataBase(CalcTimeUse());
+        }
+
+        public object GetStatisticFromDataBase()
+        {
+            return m_DataBase.GetStatisticFromDataBase();
         }
     }
 }
